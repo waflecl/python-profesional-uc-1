@@ -1,0 +1,8 @@
+Clase 1: Conceptos fundamentales de Bases de Datos
+https://player.vimeo.com/video/379340566
+
+Clase 2: El Modelo Relacional
+https://player.vimeo.com/video/379344244
+
+Clase 3: MySQL desde el Workbench
+https://player.vimeo.com/video/393693948
