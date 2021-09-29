@@ -1,0 +1,27 @@
+Clase 4: Introducción al lenguaje SQL
+https://player.vimeo.com/video/383051661
+
+Clase 5: Creación de una base de datos desde Python
+https://player.vimeo.com/video/393694475
+
+Clase 6: Tablas y tipos de datos
+https://player.vimeo.com/video/383052129
+
+Clase 7: Creación de tablas desde Python
+https://player.vimeo.com/video/393694626
+
+Clase 8: Agregar y eliminar información a una tabla desde Python
+https://player.vimeo.com/video/393694792
+
+Tutoriales:
+Tutorial: Install Python
+Linux https://player.vimeo.com/video/397953415
+MacOs https://player.vimeo.com/video/397953471
+Windows https://player.vimeo.com/video/397953569
+
+Tutorial: Install MySQL
+MacOs https://player.vimeo.com/video/397953733
+Windows https://player.vimeo.com/video/397953809
+
+Tutorial: Install MYSQL Connector
+https://player.vimeo.com/video/397953877
