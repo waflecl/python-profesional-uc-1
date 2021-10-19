@@ -1,0 +1,11 @@
+Clase 13 : Operaciones de conjunto y cláusulas de agrupación
+https://player.vimeo.com/video/384573885
+
+Clase 14 : Ordenamiento y agrupación
+https://player.vimeo.com/video/393696321
+
+Clase 15 : Carga de contenido csv desde una Api Web
+https://player.vimeo.com/video/393696667
+
+Clase 16 : Procesamiento de un archivo en formato csv
+https://player.vimeo.com/video/393697032

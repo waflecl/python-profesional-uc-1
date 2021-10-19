@@ -1,0 +1,11 @@
+Clase 9: Introducción a Pandas y Dataframes
+https://player.vimeo.com/video/393695141
+
+Clase 10 : SQL joins
+https://player.vimeo.com/video/383051984
+
+Clase 11 : Transacciones en Bases de Datos
+https://player.vimeo.com/video/384573576
+
+Clase 12 : Eliminación y Modificación de Filas de una Tabla
+https://player.vimeo.com/video/393695906
