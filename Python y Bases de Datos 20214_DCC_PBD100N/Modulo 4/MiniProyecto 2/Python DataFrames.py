@@ -1,8 +1,9 @@
 # Import de librerias a utilizar
-import pandas as pd
 import mysql.connector as db
 
 # Creación de conexión
+import pandas as pd
+
 mydb = db.connect(
     host = 'localhost',
     port = "8889",
@@ -15,8 +16,23 @@ mydb = db.connect(
 cur = mydb.cursor()
 
 # Lista de películas, el año, su director y el puntaje (rank) solo para las películas con rank mayor a 8 ordenadas en forma decreciente
-cur.execute("SELECT m.name as 'Movie', m.year AS 'Year', d.last_name AS 'Director', m.rank as 'Rank' FROM (movies_directors AS md JOIN movies as m on m.id = md.movie_id) JOIN directors AS d ON d.id = director_id WHERE m.rank > 8 ORDER BY m.rank DESC;")
+cur.execute("SELECT m.name as 'Pelicula', m.year AS 'Agno', d.last_name AS 'Director', m.rank as 'Puntaje' FROM (movies_directors AS md JOIN movies as m on m.id = md.movie_id) JOIN directors AS d ON d.id = director_id WHERE m.rank > 8 ORDER BY m.rank DESC;")
 rows = cur.fetchall()
-print("== Consulta 3.3 ==")
+lista = []
 for d in rows:
-    print(d)
+    lista.append(d)
+df1 = pd.DataFrame(lista, columns=['Pelicula','Agno','Director','Puntaje'])
+print(df1)
+# Escriba un programa Python Dataframes.py que efectúe la consulta 3.3,
+# pero el resultado lo cargue en un dataframe Pandas df1 con las
+# siguientes columnas: Pelicula, Agno, Director, Puntaje
+
+# • Recorte ese dataframe usando loc de modo de tomar solo
+# las primeras 10 filas y solo las columnas Película y Puntaje.
+# Imprima el nuevo Dataframe resultante.
+df2 = df1.loc[:9, ['Pelicula','Puntaje']]
+print(df2)
+# • Recorte nuevamente df1 ahora usando iloc de modo de tomar las
+# filas 20 a la 50 y todas las columnas. Imprima el nuevo Dataframe resultante.
+df3 = df1.iloc[19:50,:]
+print(df3)

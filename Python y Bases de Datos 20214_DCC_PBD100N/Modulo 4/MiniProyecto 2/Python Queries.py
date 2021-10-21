@@ -23,6 +23,7 @@ for d in rows:
 # Ranking de actores y se despliega la cuenta de películas para todos ordenados por apellido
 cur.execute("SELECT a.last_name, a.first_name, COUNT(movie_id) FROM actors AS a JOIN movies_actors as ma on ma.actor_id = a.id GROUP BY a.last_name, a.first_name ORDER BY a.last_name, a.first_name;")
 rows = cur.fetchall()
+print("")
 print("== Consulta 3.2 ==")
 for d in rows:
     print(d)
@@ -30,6 +31,7 @@ for d in rows:
 # Lista de películas, el año, su director y el puntaje (rank) solo para las películas con rank mayor a 8 ordenadas en forma decreciente
 cur.execute("SELECT m.name as 'Movie', m.year AS 'Year', d.last_name AS 'Director', m.rank as 'Rank' FROM (movies_directors AS md JOIN movies as m on m.id = md.movie_id) JOIN directors AS d ON d.id = director_id WHERE m.rank > 8 ORDER BY m.rank DESC;")
 rows = cur.fetchall()
+print("")
 print("== Consulta 3.3 ==")
 for d in rows:
     print(d)

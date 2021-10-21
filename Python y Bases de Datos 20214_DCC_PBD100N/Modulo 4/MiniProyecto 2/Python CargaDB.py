@@ -14,12 +14,17 @@ mydb = db.connect(
 # Crear cursor
 cur = mydb.cursor()
 
-# Cargar CSV's en DF
+# Cargar CSV's en DF y cambiar NaN por None
 dfActors = pd.read_csv('datos/actors.csv', sep=';')
+dfActors = dfActors.where((pd.notnull(dfActors)), None)
 dfDirectors = pd.read_csv('datos/directors.csv', sep=';')
+dfDirectors = dfDirectors.where((pd.notnull(dfDirectors)), None)
 dfMovies = pd.read_csv('datos/movies.csv', sep=';')
+dfMovies = dfMovies.where((pd.notnull(dfMovies)), None)
 dfMoviesActors = pd.read_csv('datos/movies_actors.csv', sep=';')
+dfMoviesActors = dfMoviesActors.where((pd.notnull(dfMoviesActors)), None)
 dfMoviesDirectors = pd.read_csv('datos/movies_directors.csv', sep=';')
+dfMoviesDirectors = dfMoviesDirectors.where((pd.notnull(dfMoviesDirectors)), None)
 
 # Revisar carga correcta de DF
 print('=== Dataframe Actors ===')
@@ -41,17 +46,17 @@ tuplaMoviesActors = [tuple(d) for d in dfMoviesActors.values.tolist()]
 tuplaMoviesDirectors = [tuple(d) for d in dfMoviesDirectors.values.tolist()]
 
 # Query y commit para hacer insert en cada tabla
-#sql = 'INSERT INTO actors(id, first_name, last_name)VALUES(%s,%s,%s)'
-#cur.executemany(sql, tuplaActors)
-#mydb.commit()
+sql = 'INSERT INTO actors(id, first_name, last_name)VALUES(%s,%s,%s)'
+cur.executemany(sql, tuplaActors)
+mydb.commit()
 
-#sql = 'INSERT INTO directors(id, first_name, last_name)VALUES(%s,%s,%s)'
-#cur.executemany(sql, tuplaDirectors)
-#mydb.commit()
+sql = 'INSERT INTO directors(id, first_name, last_name)VALUES(%s,%s,%s)'
+cur.executemany(sql, tuplaDirectors)
+mydb.commit()
 
-#sql = 'INSERT INTO movies(id, name, year, rank)VALUES(%s,%s,%s,%s)'
-#cur.executemany(sql, tuplaMovies)
-#mydb.commit()
+sql = 'INSERT INTO movies(id, name, year, rank)VALUES(%s,%s,%s,%s)'
+cur.executemany(sql, tuplaMovies)
+mydb.commit()
 
 sql = 'INSERT INTO movies_actors(actor_id, movie_id, role)VALUES(%s,%s,%s)'
 cur.executemany(sql, tuplaMoviesActors)
