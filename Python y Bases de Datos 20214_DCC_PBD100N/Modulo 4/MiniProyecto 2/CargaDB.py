@@ -54,7 +54,7 @@ sql = 'INSERT INTO directors(id, first_name, last_name)VALUES(%s,%s,%s)'
 cur.executemany(sql, tuplaDirectors)
 mydb.commit()
 
-sql = 'INSERT INTO movies(id, name, year, rank)VALUES(%s,%s,%s,%s)'
+sql = 'INSERT INTO movies(id, name, year, ranking)VALUES(%s,%s,%s,%s)'
 cur.executemany(sql, tuplaMovies)
 mydb.commit()
 

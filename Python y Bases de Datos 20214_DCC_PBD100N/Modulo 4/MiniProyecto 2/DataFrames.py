@@ -16,7 +16,7 @@ mydb = db.connect(
 cur = mydb.cursor()
 
 # Lista de películas, el año, su director y el puntaje (rank) solo para las películas con rank mayor a 8 ordenadas en forma decreciente
-cur.execute("SELECT m.name as 'Pelicula', m.year AS 'Agno', d.last_name AS 'Director', m.rank as 'Puntaje' FROM (movies_directors AS md JOIN movies as m on m.id = md.movie_id) JOIN directors AS d ON d.id = director_id WHERE m.rank > 8 ORDER BY m.rank DESC;")
+cur.execute("SELECT m.name as 'Pelicula', m.year AS 'Agno', d.last_name AS 'Director', m.ranking as 'Puntaje' FROM (movies_directors AS md JOIN movies as m on m.id = md.movie_id) JOIN directors AS d ON d.id = director_id WHERE m.ranking > 8 ORDER BY m.ranking DESC;")
 rows = cur.fetchall()
 lista = []
 for d in rows:
@@ -34,5 +34,5 @@ df2 = df1.loc[:9, ['Pelicula','Puntaje']]
 print(df2)
 # • Recorte nuevamente df1 ahora usando iloc de modo de tomar las
 # filas 20 a la 50 y todas las columnas. Imprima el nuevo Dataframe resultante.
-df3 = df1.iloc[19:50,:]
+df3 = df1.iloc[19:49,:]
 print(df3)
