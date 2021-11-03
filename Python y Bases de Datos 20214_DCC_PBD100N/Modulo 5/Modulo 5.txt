@@ -1,0 +1,24 @@
+Clase 17 : Bases de datos NoSQL
+https://player.vimeo.com/video/386327831
+
+Clase 18: Introducción a MongoDB
+https://player.vimeo.com/video/386477548
+
+Clase 19: El formato JSON
+https://player.vimeo.com/video/386477388
+
+Clase 20: MongoDB desde Python
+https://player.vimeo.com/video/409095115
+
+Tutorial Instalación de MongoDB
+Tutorial: Instalación de MongoDB Linux
+https://player.vimeo.com/video/397953939
+
+Tutorial: Instalación de MongoDB MacOs
+https://player.vimeo.com/video/397953992
+
+Tutorial: Instalación de MongoDB Windows
+https://player.vimeo.com/video/397954070
+
+Tutorial: Instalación de PyMongo
+https://player.vimeo.com/video/397954331
