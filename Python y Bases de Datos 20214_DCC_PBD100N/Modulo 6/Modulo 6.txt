@@ -1,0 +1,11 @@
+Clase 21: Conectando con MongoDB
+https://player.vimeo.com/video/393697390
+
+Clase 22: Interactuando con el motor MongoDB desde un programa
+https://player.vimeo.com/video/393697640
+
+Clase 23: Procesamiento de JSON desde Python
+https://player.vimeo.com/video/393698293
+
+Clase 24: Extracción de JSON desde una API Web
+https://player.vimeo.com/video/393698661
