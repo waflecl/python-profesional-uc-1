@@ -1,0 +1,17 @@
+Clase 8: Concepto de hash e inmutabilidad
+https://player.vimeo.com/video/413850176
+
+Clase 9: Sets y operaciones
+https://player.vimeo.com/video/411109080
+
+Clase 10: Aplicaciones de conjuntos
+https://player.vimeo.com/video/411110215
+
+Clase 11: Diccionarios y operaciones
+https://player.vimeo.com/video/411110611
+
+Clase 12: Aplicaciones de diccionarios
+https://player.vimeo.com/video/411111250
+
+Clase 13: Comparación de estructuras secuenciales y no secuenciales
+https://player.vimeo.com/video/411111715
