@@ -1,0 +1,17 @@
+Clase 18: Construcción de un programa usando objetos
+https://player.vimeo.com/video/571916901
+
+Clase 19: Aplicación de objetos con estructuras
+https://player.vimeo.com/video/571917340
+
+Clase 20: Programas con dos tipos de clases
+https://player.vimeo.com/video/563430657
+
+Clase 21: Clases que utilizan objetos
+https://player.vimeo.com/video/563432427
+
+Clase 22: Herencia de clases
+https://player.vimeo.com/video/578652443
+
+Clase 23: Aplicaciones de herencia
+https://player.vimeo.com/video/578693959
