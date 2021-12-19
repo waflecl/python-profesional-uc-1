@@ -99,7 +99,7 @@ class Camion(Automovil):
 class Rueda:
     def __init__(self):
         self.resistencia_actual = random.randint(*p.RESISTENCIA)
-        self.resistencia_total = self.resistencia_actual
+        self.resistencia_total = self.resistencia_actual # Correccion
         self.estado = "Perfecto"
 
     def gastar(self, accion):
