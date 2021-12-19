@@ -4,14 +4,60 @@ import random
 ###### INICIO PUNTO 1 ######
 ### Rellenar Clase Automóvil ###
 class Automovil:
-    pass
+    def __init__(self, kilometraje, ano):
+        self.__kilometraje = kilometraje
+        self.ano = ano
+        self.ruedas = []
+        self.aceleracion = 0
+        self.velocidad = 0
+    
+    def avanzar(self, tiempo):
+        self.__kilometraje *= self.velocidad * tiempo
+    
+    def acelerar(self, tiempo):
+        self.aceleracion = tiempo * 0.5
+        self.velocidad += self.aceleracion * tiempo * 3.6
+        self.avanzar(tiempo)
+        self.aceleracion = 0
+    
+    def frenar(self, tiempo):
+        self.aceleracion = self.aceleracion - (tiempo * 0.5)
+        self.velocidad += self.aceleracion * tiempo * 3.6
+        if self.velocidad < 0:
+            self.velocidad = 0
+        self.avanzar(tiempo)
+        self.aceleracion = 0
+    
+    def obten_kilometraje(self):
+        return self.__kilometraje
+    
+    def reemplazar_rueda(self):
+        menor_resistencia_index = self.ruedas.index(min(self.ruedas))
+        print(self.ruedas)
+        print(menor_resistencia_index)
+        ## pendiente
+        
+        
 ###### FIN PUNTO 1 ######
 
 
 ###### INICIO PUNTO 2 ######
 ### Rellenar Clase Moto ###
-class Moto: 
-    pass
+class Moto(Automovil): 
+    def __init__(self, kilometraje, ano, cilindrada):
+        super().__init__(kilometraje, ano)
+        self.cilindrada = cilindrada
+        self.ruedas = [Rueda, Rueda]
+
+    def acelerar(self, tiempo):
+        super().acelerar(tiempo)
+        for rueda in self.ruedas:
+            rueda.gastar(rueda, "acelerar")
+    
+    def frenar(self, tiempo):
+        super().frenar(tiempo)
+        for rueda in self.ruedas:
+            rueda.gastar(rueda, "frenar")
 
     def __str__(self):
         return f"Moto del año {self.ano}."
@@ -20,8 +66,22 @@ class Moto:
 
 ###### INICIO PUNTO 3 ######
 ### Rellenar Clase Camión ###
-class Camion:
-    pass
+class Camion(Automovil):
+    
+    def __init__(self, kilometraje, ano, carga):
+        super().__init__(kilometraje, ano)
+        self.carga = carga
+        self.ruedas = [Rueda, Rueda, Rueda, Rueda, Rueda, Rueda]
+    
+    def acelerar(self, tiempo):
+        super().acelerar(tiempo)
+        for rueda in self.ruedas:
+            rueda.gastar(rueda, "acelerar")
+    
+    def frenar(self, tiempo):
+        super().frenar(tiempo)
+        for rueda in self.ruedas:
+            rueda.gastar(rueda, "frenar")
 
     def __str__(self):
         return f"Camión del año {self.ano}."
@@ -37,24 +97,23 @@ class Rueda:
 
     def gastar(self, accion):
         if accion == "acelerar":
-            resistencia_actual -= 5
+            self.resistencia_actual -= 5
         elif accion == "frenar":
-            resistencia_actual -= 10
+            self.resistencia_actual -= 10
         self.actualizar_estado()
 
     def actualizar_estado(self):
-        if resistencia_actual < 0:
+        if self.resistencia_actual < 0:
             self.estado = "Rota"
-        elif resistencia_actual < self.resistencia_total / 2:
+        elif self.resistencia_actual < self.resistencia_total / 2:
             self.estado = "Gastada"
-        elif resistencia_actual < self.resistencia_total:
+        elif self.resistencia_actual < self.resistencia_total:
             self.estado = "Usada"
 
 ### Esta funcion está completa, NO MODIFICAR ###
 def seleccionar():
     for indice in range(len(vehiculos)):
         print(f"[{indice}] {str(vehiculos[indice])}")
-
     elegido = int(input())
     if elegido >= 0 and elegido < len(vehiculos):
         vehiculo = vehiculos[elegido]
@@ -67,15 +126,26 @@ def seleccionar():
 ### Se debe completar cada opción según lo indicado en el enunciado ###
 def accion(vehiculo, opcion):
     if opcion == 2: #Acelerar
-        pass
+        tiempo = int(input("Tiempo de aceleración: "))
+        vehiculo.acelerar(tiempo)
+        print(f"Se ha acelerado por {tiempo} segundos llegando a una velocidad de {vehiculo.velocidad} km/h.")
     elif opcion == 3: #Frenar
-        pass
+        tiempo = int(input("Tiempo de frenado: "))
+        vehiculo.frenar(tiempo)
+        print(f"Se ha frenado por {tiempo} segundos llegando a una velocidad de {vehiculo.velocidad} km/h.")
     elif opcion == 4: #Avanzar
-        pass
+        tiempo = int(input("Tiempo de avanzar: "))
+        vehiculo.avanzar(tiempo)
+        print(f"Se ha avanzado {tiempo} segundos a una velocidad de {vehiculo.velocidad} km/h.")
     elif opcion == 5: #Cambiar Rueda
-        pass
+        vehiculo.reemplazar_rueda()
+        print("Se ha reemplazado una rueda con éxito.")
     elif opcion == 6: #Mostrar Estado
-        pass 
+        print(f"Año: {vehiculo.ano}")
+        print(f"Velocidad: {vehiculo.velocidad}")
+        print(f"Kilometraje: {vehiculo.obten_kilometraje()}")
+        for rueda in vehiculo.ruedas:
+            print(rueda.estado)
 ###### FIN PUNTO 4.2 ######
 
 
@@ -85,6 +155,8 @@ if __name__ == "__main__":
     ### Aca deben instanciar los vehiculos indicados
     ### en el enunciado y agregarlos a la lista vehiculos
     vehiculos = []
+    vehiculos.append(Moto(0, 2019, 150))
+    vehiculos.append(Camion(0, 2019, 1000))
 
 
     ###### FIN PUNTO 4.1 ######
