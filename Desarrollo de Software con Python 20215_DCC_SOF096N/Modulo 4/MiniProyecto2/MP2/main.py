@@ -32,10 +32,17 @@ class Automovil:
         return self.__kilometraje
     
     def reemplazar_rueda(self):
-        menor_resistencia_index = self.ruedas.index(min(self.ruedas))
-        print(self.ruedas)
-        print(menor_resistencia_index)
-        ## pendiente
+        index = 0
+        aux = 0
+        for i in range(len(self.ruedas)):
+            if i == 0:
+                aux = self.ruedas[i].resistencia_actual
+            if self.ruedas[i].resistencia_actual < aux:
+                index = i
+                aux = self.ruedas[i].resistencia_actual
+        self.ruedas.remove(self.ruedas[index])
+        self.ruedas.append(Rueda())     
+
         
         
 ###### FIN PUNTO 1 ######
@@ -47,17 +54,17 @@ class Moto(Automovil):
     def __init__(self, kilometraje, ano, cilindrada):
         super().__init__(kilometraje, ano)
         self.cilindrada = cilindrada
-        self.ruedas = [Rueda, Rueda]
+        self.ruedas = [Rueda(), Rueda()]
 
     def acelerar(self, tiempo):
         super().acelerar(tiempo)
-        for rueda in self.ruedas:
-            rueda.gastar(rueda, "acelerar")
+        for r in self.ruedas:
+            r.gastar("acelerar")
     
     def frenar(self, tiempo):
         super().frenar(tiempo)
-        for rueda in self.ruedas:
-            rueda.gastar(rueda, "frenar")
+        for r in self.ruedas:
+            r.gastar("frenar")
 
     def __str__(self):
         return f"Moto del año {self.ano}."
@@ -71,17 +78,17 @@ class Camion(Automovil):
     def __init__(self, kilometraje, ano, carga):
         super().__init__(kilometraje, ano)
         self.carga = carga
-        self.ruedas = [Rueda, Rueda, Rueda, Rueda, Rueda, Rueda]
+        self.ruedas = [Rueda(), Rueda(), Rueda(), Rueda(), Rueda(), Rueda()]
     
     def acelerar(self, tiempo):
         super().acelerar(tiempo)
-        for rueda in self.ruedas:
-            rueda.gastar(rueda, "acelerar")
+        for r in self.ruedas:
+            r.gastar("acelerar")
     
     def frenar(self, tiempo):
         super().frenar(tiempo)
-        for rueda in self.ruedas:
-            rueda.gastar(rueda, "frenar")
+        for r in self.ruedas:
+            r.gastar("frenar")
 
     def __str__(self):
         return f"Camión del año {self.ano}."
@@ -92,22 +99,22 @@ class Camion(Automovil):
 class Rueda:
     def __init__(self):
         self.resistencia_actual = random.randint(*p.RESISTENCIA)
-        self.resistencia_total = self.resistencia
+        self.resistencia_total = self.resistencia_actual
         self.estado = "Perfecto"
 
     def gastar(self, accion):
         if accion == "acelerar":
-            self.resistencia_actual -= 5
+            self.resistencia_actual -= 5 # Correccion
         elif accion == "frenar":
-            self.resistencia_actual -= 10
+            self.resistencia_actual -= 10 # Correccion
         self.actualizar_estado()
 
     def actualizar_estado(self):
-        if self.resistencia_actual < 0:
+        if self.resistencia_actual < 0: # Correccion
             self.estado = "Rota"
-        elif self.resistencia_actual < self.resistencia_total / 2:
+        elif self.resistencia_actual < self.resistencia_total / 2: # Correccion
             self.estado = "Gastada"
-        elif self.resistencia_actual < self.resistencia_total:
+        elif self.resistencia_actual < self.resistencia_total: # Correccion
             self.estado = "Usada"
 
 ### Esta funcion está completa, NO MODIFICAR ###
@@ -144,8 +151,8 @@ def accion(vehiculo, opcion):
         print(f"Año: {vehiculo.ano}")
         print(f"Velocidad: {vehiculo.velocidad}")
         print(f"Kilometraje: {vehiculo.obten_kilometraje()}")
-        for rueda in vehiculo.ruedas:
-            print(rueda.estado)
+        for r in vehiculo.ruedas:
+            print(f"Estado de rueda: {r.estado}")
 ###### FIN PUNTO 4.2 ######
 
 
@@ -154,9 +161,7 @@ if __name__ == "__main__":
     ###### INICIO PUNTO 4.1 ######
     ### Aca deben instanciar los vehiculos indicados
     ### en el enunciado y agregarlos a la lista vehiculos
-    vehiculos = []
-    vehiculos.append(Moto(0, 2019, 150))
-    vehiculos.append(Camion(0, 2019, 1000))
+    vehiculos = [Moto(0, 2019, 150),Camion(0, 2021, 1000)]
 
 
     ###### FIN PUNTO 4.1 ######
@@ -176,7 +181,7 @@ if __name__ == "__main__":
 
     op = -1
     while op != 0:
-        
+
         for k, v in dict_opciones.items():
             print(f"{k}: {v[0]}")
         
