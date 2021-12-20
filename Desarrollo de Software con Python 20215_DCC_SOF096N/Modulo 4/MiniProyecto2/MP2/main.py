@@ -12,7 +12,7 @@ class Automovil:
         self.velocidad = 0
     
     def avanzar(self, tiempo):
-        self.__kilometraje *= self.velocidad * tiempo
+        self.__kilometraje += self.velocidad * tiempo
     
     def acelerar(self, tiempo):
         self.aceleracion = tiempo * 0.5
@@ -35,6 +35,7 @@ class Automovil:
         index = 0
         aux = 0
         for i in range(len(self.ruedas)):
+            print(f"R: {self.ruedas[i].resistencia_actual}")
             if i == 0:
                 aux = self.ruedas[i].resistencia_actual
             if self.ruedas[i].resistencia_actual < aux:
@@ -125,6 +126,7 @@ def seleccionar():
     if elegido >= 0 and elegido < len(vehiculos):
         vehiculo = vehiculos[elegido]
         print("Se seleccionó el vehículo", str(vehiculo))
+        return vehiculo
     else:
         print("intentelo denuevo.")
 
@@ -133,17 +135,35 @@ def seleccionar():
 ### Se debe completar cada opción según lo indicado en el enunciado ###
 def accion(vehiculo, opcion):
     if opcion == 2: #Acelerar
-        tiempo = int(input("Tiempo de aceleración: "))
-        vehiculo.acelerar(tiempo)
-        print(f"Se ha acelerado por {tiempo} segundos llegando a una velocidad de {vehiculo.velocidad} km/h.")
+        while True:
+            try:
+                tiempo = int(input("Tiempo de aceleración (segundos): "))
+                vehiculo.acelerar(tiempo)
+                print(f"Se ha acelerado por {tiempo} segundos llegando a una velocidad de {vehiculo.velocidad} km/h.")
+                break
+            except ValueError:
+                print("El tiempo debe ser un número entero.")
+                continue
     elif opcion == 3: #Frenar
-        tiempo = int(input("Tiempo de frenado: "))
-        vehiculo.frenar(tiempo)
-        print(f"Se ha frenado por {tiempo} segundos llegando a una velocidad de {vehiculo.velocidad} km/h.")
+        while True:
+            try:
+                tiempo = int(input("Tiempo de frenado (segundos): "))
+                vehiculo.frenar(tiempo)
+                print(f"Se ha frenado por {tiempo} segundos llegando a una velocidad de {vehiculo.velocidad} km/h.")
+                break
+            except ValueError:
+                print("El tiempo debe ser un número entero.")
+                continue
     elif opcion == 4: #Avanzar
-        tiempo = int(input("Tiempo de avanzar: "))
-        vehiculo.avanzar(tiempo)
-        print(f"Se ha avanzado {tiempo} segundos a una velocidad de {vehiculo.velocidad} km/h.")
+        while True:
+            try:
+                tiempo = int(input("Tiempo de avanzar (segundos): "))
+                vehiculo.avanzar(tiempo)
+                print(f"Se ha avanzado {tiempo} segundos a una velocidad de {vehiculo.velocidad} km/h.")
+                break
+            except ValueError:
+                print("El tiempo debe ser un número entero.")
+                continue
     elif opcion == 5: #Cambiar Rueda
         vehiculo.reemplazar_rueda()
         print("Se ha reemplazado una rueda con éxito.")
@@ -194,7 +214,7 @@ if __name__ == "__main__":
         
         if op != 0 and op in dict_opciones.keys():
             if op == 1:
-                dict_opciones[op][1]()
+                vehiculo = dict_opciones[op][1]()
             else:
                 dict_opciones[op][1](vehiculo, op)
         elif op == 0:
