@@ -35,7 +35,6 @@ class Automovil:
         index = 0
         aux = 0
         for i in range(len(self.ruedas)):
-            print(f"R: {self.ruedas[i].resistencia_actual}")
             if i == 0:
                 aux = self.ruedas[i].resistencia_actual
             if self.ruedas[i].resistencia_actual < aux:
